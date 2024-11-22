@@ -1,0 +1,248 @@
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#navbarid a:first-child {
+    font-family: 'Cooper Black', sans-serif;
+    font-size: 20px;
+}
+
+.media-container {
+    position: absolute;
+    top: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 44px); /* Fill remaining height of viewport */
+    background-color: #c31e1e;
+}
+
+.swiper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+.swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 75%;
+    margin-top: 20px;
+    justify-content: space-around; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    -webkit-box-reflect: below 0px linear-gradient(transparent, #0005);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    color: whitesmoke;
+}
+
+.swiper-button-prev {
+    margin-left: 370px;
+}
+
+.swiper-button-next {
+    margin-right: 370px;
+}
+
+.swiper-slide {
+    filter: blur(5px);
+}
+  
+.swiper-slide-active {
+    filter: blur(0px);
+}
+
+.album-container,
+.album-inner-container,
+.front,
+.back {
+    width: 100%;
+    height: 100%;
+}
+
+.album-inner-container {
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.swiper-slide-active .album-container:hover .album-inner-container {
+    transform: rotateY(180deg);
+}
+
+.back {
+    position: relative;
+    transform: rotateY(180deg);
+}
+
+.album-inner-container:hover .back .back-card-song-container {
+    display: flex; /* Show when back is visible */
+}
+
+.back-card-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    padding: 10px;
+    width: 100%;
+}
+
+.song-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2px;
+    flex-grow: 1;
+}
+
+.song-container:hover {
+    background-color: white;
+    transition: 0.7s ease;
+    cursor: pointer;
+    color: black;
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 75%, rgba(255,255,255,0) 100%);
+    background-blend-mode: overlay;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    font-family: 'Cooper Black', sans-serif;
+}
+
+.fa.fa-play::before {
+    margin: 5px;
+}
+
+.fa.fa-play:hover {
+    color: #c31e1e;
+}
+
+.fa.fa-play-circle,
+.time {
+    font-size: 17px;
+}
+
+.time {
+    margin-left: auto;
+}
+
+.mobile-song-container {
+    display: none;
+}
+
+.music-player-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    margin-top: 450px;
+    width: 50%;
+    height: 15%;
+    background-color: #d68685;
+    border-color: #63291e;
+    border-style: solid;
+    border-top-width: 16px;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 0px;
+    z-index: 99;
+}
+
+.music-player-container > i {
+    font-size: 40px;
+    cursor: pointer;
+    color: #63291e;
+}
+
+.music-player-container i:hover {
+    color: whitesmoke;
+    transition: 0.8s ease;
+}
+
+#volume-slider {
+    width: 20%;
+    height: 20px;
+    -webkit-appearance: none; /* Remove default styling */
+    transition: opacity 0.5s ease;
+    background: #f9931e;
+    margin-left: -50px;
+    margin-right: -50px;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15%;
+    height: 50px;
+    background: whitesmoke;
+    cursor: pointer;
+    transition: 0.8s ease;
+}
+
+@media only screen and (max-width: 730px) {
+    .media-container {
+        position: relative;
+        display: flex;
+        height: 50%;
+        margin-bottom: 44px;
+    }
+    
+    .swiper-slide-active .album-container:hover .album-inner-container {
+        transform: rotateY(0deg);
+    }
+
+    .swiper-button-prev {
+        margin-left: 15%;
+    }
+
+    .swiper-button-next {
+        margin-right: 15%;
+    }
+
+    #volume-slider {
+        margin-right: 0%;
+        margin-left: 0%;
+    }
+
+    .mobile-song-container {
+        display: flex;
+        flex-direction: column;
+        padding: 1%;
+        height: 100%;
+        width: 100%;
+        background-color: maroon;
+        padding-bottom: 18%;
+    }
+
+    .music-player-container {
+        display: flex;
+        position: fixed;
+        width: 100%;
+        height: 14%;
+        bottom: 0%;
+    }
+}
