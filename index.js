@@ -57,6 +57,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     mobileMenu.style.display = "none";
                 })
             }
+
+            // Adjusts the mobileMenu when the screen exceeds 768px 
+            // and reverts it back when it equals or is less than 768px
+            window.addEventListener('resize', function() {
+                const windowWidth = window.innerWidth;
+                console.log('Current window width:', windowWidth);
+                
+                if (windowWidth <= 768) {
+                    mobileMenu.style.display = 'flex';
+                    toggle = 'ON';
+                } 
+                else {
+                    mobileMenu.style.display = 'none';
+                    toggle = 'OFF';
+                }
+            });
         })
         .catch(error => {
             console.error('Error fetching navbar: ', error)});
@@ -75,11 +91,15 @@ function toggleExitButton(mobileMenu, bars) {
         bars[0].style.transition = '0.8s ease';
         bars[1].style.transition = '0.8s ease';
         bars[2].style.transition = '0.8s ease';
+
         menuButton.style.backgroundColor = 'red';
+        // Remove any hover effect when it's toggled on (to keep it red)
+        menuButton.removeEventListener("mouseover", hoverEffectGray);
+        menuButton.removeEventListener("mouseleave", hoverEffectDefault);
         toggle = 'ON';
         return;
     }
-    if (toggle = 'ON') {
+    else if (toggle == 'ON') {
         mobileMenu.style.display = "none";
 
         bars[0].style.transform = 'translateY(0px) rotate(0deg)';
@@ -88,15 +108,23 @@ function toggleExitButton(mobileMenu, bars) {
         bars[0].style.transition = '0.8s ease';
         bars[1].style.transition = '0.8s ease';
         bars[2].style.transition = '0.8s ease';
-        menuButton.addEventListener("mouseover", function () {
-            menuButton.style.backgroundColor = 'gray';
-        })
-        menuButton.addEventListener("mouseleave", function () {
-            menuButton.style.backgroundColor = '#333';
-        })
+
+        menuButton.style.backgroundColor = 'gray';
+        // Add hover effect back when it's toggled off
+        menuButton.addEventListener("mouseover", hoverEffectGray);
+        menuButton.addEventListener("mouseleave", hoverEffectDefault);
         toggle = 'OFF';
         return;
     }
+}
+
+// Hover effect functions
+function hoverEffectGray() {
+    menuButton.style.backgroundColor = 'gray';
+}
+
+function hoverEffectDefault() {
+    menuButton.style.backgroundColor = '#333'; // Default background color
 }
 
 function carousel() {
