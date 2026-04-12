@@ -474,10 +474,6 @@
             message: document.getElementById("message").value
         };
 
-        console.log(templateParams.name);
-        console.log(templateParams.email);
-        console.log(templateParams.message);
-
         emailjs.send("service_myrge48", "template_xnqwgjr", templateParams)
             .then(function() {
             alert("✅ Email sent successfully!");
