@@ -66,8 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 })
 
+                // Modified here so I removed local link
                 homeButton[0].addEventListener('click', function() {
-                    window.location.href = 'http://127.0.0.1:5500/The%20Doors%20Website/index.html';
+                    window.location.href = 'index.html';
                 });
 
                 incrementCart(notification);
